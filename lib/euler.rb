@@ -14,7 +14,9 @@ class Euler
   end
 
   def euler2
-    evens = fibonacci_sequence(4_000_000).select { |n| n.even? }
-    evens.inject(:+)
+    fibonacci_sequence(4_000_000).inject do |sum, n|
+      (sum = sum + n) if n.even?
+      sum
+    end
   end
 end

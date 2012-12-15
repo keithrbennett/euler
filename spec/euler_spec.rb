@@ -23,7 +23,7 @@ describe Euler do
   end
 
   it "should calculate euler2 correctly" do
-    p subject.euler2.should == 4613732
+    subject.euler2.should == 4613732
   end
 
 end
