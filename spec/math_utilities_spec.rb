@@ -31,6 +31,7 @@ describe MathUtilities do
 
   it "should calculate prime factors of 88 as 2, 2, 2, 11" do
     expected = [2, 2, 2, 11]
+    #n = 123456; puts "Prime Factors of #{n}:\n#{subject.prime_factors(n).to_a}"
     factors = subject.prime_factors(88)
     factors.should == expected
   end

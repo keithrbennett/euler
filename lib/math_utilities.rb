@@ -15,14 +15,11 @@ module MathUtilities
   end
 
   def prime_factors(n)
-    want_logging = n > 1000 * 1000
     factors = []
-    primes = Primes.new(n / 2)
-    primes.each do |prime|
+    Primes.new(n / 2).each do |prime|
       while multiple_of?(n, prime)
         factors << prime
         n = n / prime
-        if want_logging; puts ("Factor: %8d  New n: %d" % [prime, new_n]); end
       end
     end
     factors
