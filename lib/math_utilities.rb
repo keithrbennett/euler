@@ -17,7 +17,7 @@ module MathUtilities
   def prime_factors(n)
     want_logging = n > 1000 * 1000
     factors = []
-    primes = Primes.as_array(n / 2)
+    primes = Primes.new(n / 2)
     primes.each do |prime|
       while mult_of?(n, prime)
         factors << prime
