@@ -20,9 +20,9 @@ describe Euler do
 
   it "should calculate euler3 correctly" do
     pending
-    answer = subject.euler
+    answer = subject.euler3
     STDERR.puts "problem 3 answer is #{answer}"
-    subject.euler3.should == 1  # replace with correct value
+    answer.should == 1  # replace with correct value
   end
 
   it "should calculate euler8 correctly" do

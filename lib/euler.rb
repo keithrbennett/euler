@@ -21,8 +21,13 @@ class Euler
 
 
   def euler3
-    answer = prime_factors(600851475143).last
-    p answer
+    start_time = Time.now
+    factors = prime_factors(600_851_475_143)
+    File.write('factors.txt', factors.join("\n"))
+    answer = factors.last
+    duration = Time.now - start_time
+    p "Answer is #{answer}, duration of test was #{duration}."
+    answer
   end
 
   def euler8
