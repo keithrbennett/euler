@@ -1,21 +1,35 @@
 require 'pry'
 
+# A lazy sequence of prime numbers.
 class Primes
 
   include Enumerable
 
-  def initialize
+  attr_reader :upper_bound
+
+  def self.write_file(filespec, upper_bound)
+    primes = Primes.new(upper_bound)
+    File.open(filespec, 'w') do |file|
+      primes.each { |prime| file << prime.to_s + "\n" }
+    end
+  end
+
+  def self.as_array(upper_bound)
+    if upper_bound == nil
+      raise "Without an upper bound, this method will never return."
+    end
+    Primes.new(upper_bound).to_a
+  end
+
+  def initialize(upper_bound = nil)
+    @upper_bound = upper_bound
     @primes = []
   end
 
   def each
-    while true
-      yield(next_prime)
+    while (prime = next_prime)
+      yield(prime)
     end
-  end
-
-  def prime?(n)
-    @primes.none? { |prime| n % prime == 0 }
   end
 
   def next_prime
@@ -28,17 +42,25 @@ class Primes
       end
       next_prime = n
     end
-    @primes << next_prime
+
+    if within_bound(next_prime)
+      @primes << next_prime
+    else
+      next_prime = nil
+    end
+
     next_prime
   end
 
-  def self.write_file(filespec, upper_bound)
-    primes = Primes.new
-    File.open(filespec, 'w') do |file|
-      while (prime = primes.next_prime) <= upper_bound
-        file << prime.to_s + "\n"
-      end
-    end
+  def within_bound(n)
+    upper_bound == nil || n <= upper_bound
   end
+  private :within_bound
+
+  def prime?(n)
+    @primes.none? { |prime| n % prime == 0 }
+  end
+  private :prime?
+
 
 end

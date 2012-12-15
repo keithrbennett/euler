@@ -22,4 +22,14 @@ describe Primes do
       File.readlines(filespec).map { |line| line.strip.to_i }.should == expected
     end
   end
+
+  it "should handle upper bound of primes correctly" do
+    Primes.as_array(20).should == [2, 3, 5, 7, 11, 13, 17, 19]
+  end
+
+  it "should handle upper bound of nil for primes correctly" do
+    -> { Primes.as_array(nil) }.should raise_error
+  end
+
+
 end
