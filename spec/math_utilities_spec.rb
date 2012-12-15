@@ -10,8 +10,8 @@ describe MathUtilities do
   end
 
   it "should know that 4 is a multiple of 2 but 5 is not" do
-    subject.mult_of?(4,2).should be_true
-    subject.mult_of?(5,2).should be_false
+    subject.multiple_of?(4,2).should be_true
+    subject.multiple_of?(5,2).should be_false
   end
 
   it "should get prime numbers of [2, 3, 5, 7, 11, 13, 17, 19] w/max 20" do

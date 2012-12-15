@@ -10,7 +10,7 @@ module MathUtilities
     fibs
   end
 
-  def mult_of?(n, factor)
+  def multiple_of?(n, factor)
     n % factor == 0
   end
 
@@ -19,7 +19,7 @@ module MathUtilities
     factors = []
     primes = Primes.new(n / 2)
     primes.each do |prime|
-      while mult_of?(n, prime)
+      while multiple_of?(n, prime)
         factors << prime
         n = n / prime
         if want_logging; puts ("Factor: %8d  New n: %d" % [prime, new_n]); end
