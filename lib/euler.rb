@@ -31,7 +31,7 @@ class Euler
     return [] if upper_bound < 2
     primes = [2]
     3.upto(upper_bound) do |n|
-      is_prime = !!! primes.detect { |prime| mult_of?(n, prime) }
+      is_prime = primes.none? { |prime| mult_of?(n, prime) }
       primes << n if is_prime
     end
     return primes
