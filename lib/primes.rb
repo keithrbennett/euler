@@ -32,4 +32,13 @@ class Primes
     next_prime
   end
 
+  def self.write_file(filespec, upper_bound)
+    primes = Primes.new
+    File.open(filespec, 'w') do |file|
+      while (prime = primes.next_prime) <= upper_bound
+        file << prime.to_s + "\n"
+      end
+    end
+  end
+
 end
