@@ -26,4 +26,25 @@ describe Euler do
     subject.euler2.should == 4613732
   end
 
+  it "should calculate prime factors of 88 as 2, 2, 2, 11" do
+    expected = [2, 2, 2, 11]
+    factors = subject.prime_factors(88)
+    factors.should == expected
+  end
+
+  it "should know that 4 is a multiple of 2 but 5 is not" do
+    subject.mult_of?(4,2).should be_true
+    subject.mult_of?(5,2).should be_false
+  end
+
+  it "should get prime numbers of [2, 3, 5, 7, 11, 13, 17, 19] w/max 20" do
+    expected =  [2, 3, 5, 7, 11, 13, 17, 19]
+    subject.prime_numbers(20).should == expected
+  end
+
+  it "should calculate euler3 correctly" do
+    answer = subject.euler
+    pending
+    subject.euler3.should == 1  # replace with correct value
+  end
 end
