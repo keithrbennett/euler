@@ -19,7 +19,7 @@ module MathUtilities
       is_prime = primes.none? { |prime| mult_of?(n, prime) }
       primes << n if is_prime
     end
-    return primes
+    primes
   end
 
 
