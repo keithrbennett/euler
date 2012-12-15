@@ -35,4 +35,7 @@ module MathUtilities
     factors
   end
 
+  def digit_array_from_string(string_of_digits)
+    string_of_digits.scan(/./).map { |char| char.to_i }
+  end
 end

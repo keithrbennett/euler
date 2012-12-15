@@ -26,7 +26,7 @@ class Euler
   end
 
   def euler8
-    numstr = %w(
+    number_as_string = %w(
     73167176531330624919225119674426574742355349194934
     96983520312774506326239578318016984801869478851843
     85861560789112949495459501737958331952853208805511
@@ -48,24 +48,21 @@ class Euler
     05886116467109405077541002256983155200055935729725
     71636269561882670428252483600823257530420752963450
     ).join('')
-    digit_array = numstr.scan(/./).map { |ch| ch.to_i }
-    digit_count = numstr.size
+
+    digits = digit_array_from_string(number_as_string)
+
     product_max = 0
-    offset_max = -1
-    (0...(digit_count - 5)).each do |offset|
-      product = digit_array[offset] *
-          digit_array[offset + 1] *
-          digit_array[offset + 2] *
-          digit_array[offset + 3] *
-          digit_array[offset + 4]
+
+    (0...(digits.size - 5)).each do |offset|
+      product = digits[offset] *
+          digits[offset + 1] *
+          digits[offset + 2] *
+          digits[offset + 3] *
+          digits[offset + 4]
       if product > product_max
         product_max = product
-        offset_max = offset
       end
     end
-
-    #digits_max = digit_array[offset_max, 5]
-    #STDERR.puts "Found max: num = #{product_max}, offset = #{offset_max}, digits = #{digits_max}"
 
     product_max
   end
@@ -174,8 +171,6 @@ class Euler
       53503534226472524250874054075591789781264330331690
     ).map { |s| s.to_i }
     sum = addends.inject(:+)
-    first_10_digits = sum.to_s[0...10]
-    p first_10_digits
-    first_10_digits
+    sum.to_s[0...10]
   end
 end

@@ -34,8 +34,4 @@ describe Euler do
     subject.euler13.should == '5537376230'
   end
 
-  it "should create a digit array correctly" do
-    expected = [7, 5, 0, 2, 8, 3, 4]
-    subject.digit_array(7502834).should == expected
-  end
 end

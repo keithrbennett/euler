@@ -31,4 +31,8 @@ describe MathUtilities do
     factors.should == expected
   end
 
+  it "should create a digit array correctly" do
+    subject.digit_array_from_string('7502834').should == [7, 5, 0, 2, 8, 3, 4]
+  end
+
 end
