@@ -23,4 +23,9 @@ describe Euler do
     answer = subject.euler
     subject.euler3.should == 1  # replace with correct value
   end
+
+  it "should calculate euler13 correctly" do
+    subject.euler13.should == '5537376230'
+  end
+
 end
