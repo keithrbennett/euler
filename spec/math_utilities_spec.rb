@@ -16,7 +16,7 @@ describe MathUtilities do
 
   it "should get prime numbers of [2, 3, 5, 7, 11, 13, 17, 19] w/max 20" do
     expected =  [2, 3, 5, 7, 11, 13, 17, 19]
-    subject.prime_numbers(20).should == expected
+    Primes.as_array(20).should == expected
   end
 
   it "should calculate fibonacci correctly" do
