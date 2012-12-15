@@ -5,9 +5,6 @@ class Euler
   include MathUtilities
 
   def euler1
-    #nums_to_sum = (0...1000).select { |n| n % 3 == 0 || n % 5 == 0 }
-    #nums_to_sum.inject(:+)
-
     qualified = ->(n) { n % 3 == 0 || n % 5 == 0 }
     (0...1000).inject { |sum, n| sum += n if qualified.(n); sum }
   end
