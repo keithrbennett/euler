@@ -11,20 +11,16 @@ class Euler
 
   def euler2
     fibonacci_sequence(4_000_000).inject do |sum, n|
-      (sum = sum + n) if n.even?
+      (sum += n) if n.even?
       sum
     end
   end
 
 
   def euler3
-    start_time = Time.now
     factors = prime_factors(600_851_475_143)
-    File.write('factors.txt', factors.join("\n"))
-    answer = factors.last
-    duration = Time.now - start_time
-    p "Answer is #{answer}, duration of test was #{duration}."
-    answer
+    File.write('factors.txt', factors.join("\n")) # for inspection
+    factors.last
   end
 
   def euler8
