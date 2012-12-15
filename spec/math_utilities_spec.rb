@@ -25,6 +25,10 @@ describe MathUtilities do
     subject.fibonacci_sequence(6765).should == expected
   end
 
+  it "should handle the fibonacci's upper bound correctly" do
+    subject.fibonacci_sequence(10).last.should == 8
+  end
+
   it "should calculate prime factors of 88 as 2, 2, 2, 11" do
     expected = [2, 2, 2, 11]
     factors = subject.prime_factors(88)

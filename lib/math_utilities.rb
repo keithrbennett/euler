@@ -1,9 +1,11 @@
+require 'pry'
+
 module MathUtilities
 
   def fibonacci_sequence(upper_bound)
     fibs = [0, 1]
-    until fibs[-1] >= upper_bound
-      fibs << fibs[-1] + fibs[-2]
+    until (next_fib = (fibs[-1] + fibs[-2])) > upper_bound
+      fibs << next_fib
     end
     fibs
   end
@@ -19,7 +21,6 @@ module MathUtilities
       is_prime = primes.none? { |prime| mult_of?(n, prime) }
       if is_prime
         primes << n
-        STDERR.puts "Prime: #{n}    Prime count: #{primes.size}"
       end
     end
     primes
