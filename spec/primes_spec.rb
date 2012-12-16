@@ -31,5 +31,7 @@ describe Primes do
     -> { Primes.as_array(nil) }.should raise_error
   end
 
-
+  it "should write a gazillion primes" do
+    Primes.write_file('gazillion_primes.txt', 10_000_000)
+  end
 end

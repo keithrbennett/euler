@@ -63,7 +63,7 @@ class Primes
   end
 
   def within_bound(n)
-    (! bounded) || n <= upper_bound
+    (! bounded?) || n <= upper_bound
   end
   private :within_bound
 
