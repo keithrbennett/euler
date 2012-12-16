@@ -14,11 +14,6 @@ describe MathUtilities do
     subject.multiple_of?(5,2).should be_false
   end
 
-  it "should get prime numbers of [2, 3, 5, 7, 11, 13, 17, 19] w/max 20" do
-    expected =  [2, 3, 5, 7, 11, 13, 17, 19]
-    Primes.as_array(20).should == expected
-  end
-
   it "should calculate fibonacci correctly" do
     # from Wikipedia:
     expected = %w(0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765).map(&:to_i)
@@ -27,13 +22,6 @@ describe MathUtilities do
 
   it "should handle the fibonacci's upper bound correctly" do
     subject.fibonacci_sequence(10).last.should == 8
-  end
-
-  it "should calculate prime factors of 88 as 2, 2, 2, 11" do
-    expected = [2, 2, 2, 11]
-    #n = 123456; puts "Prime Factors of #{n}:\n#{subject.prime_factors(n).to_a}"
-    factors = subject.prime_factors(88)
-    factors.should == expected
   end
 
   it "should create a digit array correctly" do

@@ -4,34 +4,33 @@ require 'fakefs'
 
 describe Primes do
 
-  it "should correctly detect the first prime > 10000" do
-    subject.detect { |prime| prime > 10000 }.should == 10007
-  end
-
-  it "should correctly return the first 10 primes" do
-    primes = []
-    10.times { primes << subject.next_prime }
-    primes.should == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
-  end
-
   it "should correctly write primes to a file" do
     FakeFS do
       filespec = 'primes.txt'
-      Primes.write_file(filespec, 30)
+      subject.write_file(filespec, 30)
       expected = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
       File.readlines(filespec).map { |line| line.strip.to_i }.should == expected
     end
   end
 
   it "should handle upper bound of primes correctly" do
-    Primes.as_array(20).should == [2, 3, 5, 7, 11, 13, 17, 19]
+    subject.as_array(20).should == [2, 3, 5, 7, 11, 13, 17, 19]
   end
 
   it "should handle upper bound of nil for primes correctly" do
-    -> { Primes.as_array(nil) }.should raise_error
+    -> { subject.as_array(nil) }.should raise_error
   end
 
-  it "should write a gazillion primes" do
-    Primes.write_file('gazillion_primes.txt', 10_000_000)
+  it "should calculate prime factors of 88 as 2, 2, 2, 11" do
+    expected = [2, 2, 2, 11]
+    #n = 123456; puts "Prime Factors of #{n}:\n#{subject.prime_factors(n).to_a}"
+    factors = subject.prime_factors(88)
+    factors.should == expected
   end
+
+  it "should get prime numbers of [2, 3, 5, 7, 11, 13, 17, 19] w/max 20" do
+    expected =  [2, 3, 5, 7, 11, 13, 17, 19]
+    subject.as_array(20).should == expected
+  end
+
 end

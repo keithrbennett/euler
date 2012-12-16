@@ -1,5 +1,6 @@
 require 'pry'
 require 'math_utilities'
+
 class Euler
 
   include MathUtilities
