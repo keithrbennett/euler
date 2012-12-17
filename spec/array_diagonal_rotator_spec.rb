@@ -51,6 +51,12 @@ describe ArrayRotator do
     rotator.data_array.should == expected
   end
 
+  it "should calculate upper_right_to_lower_left_as_array correctly" do
+    a = [[1,2,3], [4,5,6]]
+    rotator = ArrayRotator.new(a)
+    expected = [[0,2], [0,1], [0,0], [1,0]]
+    rotator.upper_right_to_lower_left_as_array.should == expected
+  end
 
 
   it "'s first array should be [1] " do

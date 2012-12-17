@@ -15,14 +15,29 @@ class ArrayRotator
     Array.new(@num_output_inner_arrays)
   end
 
+
+  def value_at(yx)
+    y, x = yx
+    @data_array[y][x]
+  end
+
+  def upper_right_to_lower_left_as_array
+    points = []
+    @x_max.downto(0) { |x| points << [0, x] }
+    1.upto(@y_max)   { |y| points << [y, 0]}
+    points
+  end
+
   # Input array must be a 2D array whose inner arrays
   # sizes are all equal
   def rotate_45_left
-    input_array = data_array
+    input_array = @data_array
     new_array = []  # output array
-    start_y, start_x = 0, @x_max
-    new_array << [input_array[start_y][start_x]]
-    (0..@num_output_inner_arrays).each do |input_outer_array_index|
+    upper_right_to_lower_left_as_array.each do |start_yx|
+      inner_array = []
+      inner_array = value_at(start_yx)
+        new_array
+
       #start y =
       inner_array = []
 
