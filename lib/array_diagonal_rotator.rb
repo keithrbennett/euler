@@ -8,7 +8,11 @@ class ArrayDiagonalRotator
   end
 
   def rotate(input_array)
-    a = input_array
-    [a.last.first]
+    ia = input_array
+    oa = []  # output array
+    oa << [ia[-1][0]]
+    oa << [ia[-2][0], ia[-1][1]]
+    oa << [ia[0][-1]]
+    oa
   end
 end

@@ -13,6 +13,17 @@ describe ArrayDiagonalRotator do
 
   it "'s first array should have 1 element whose content is x_0, y_max " do
     a = [[0, 1], [2, 3]]
-    subject.rotate(a).should == [2]
+    subject.rotate(a).first.should == [2]
   end
+
+  it "'s second array should be [0, 3]" do
+    a = [[0, 1], [2, 3]]
+    subject.rotate(a)[1].should == [0, 3]
+  end
+
+  it "'s third array should be [1]" do
+    a = [[0, 1], [2, 3]]
+    subject.rotate(a)[2].should == [1]
+  end
+
 end
