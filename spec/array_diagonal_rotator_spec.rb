@@ -10,4 +10,9 @@ describe ArrayDiagonalRotator do
     output_array = subject.send(:create_output_array, input_array)
     output_array.length.should == 6
   end
+
+  it "'s first array should have 1 element whose content is x_0, y_max " do
+    a = [[0, 1], [2, 3]]
+    subject.rotate(a).should == [2]
+  end
 end

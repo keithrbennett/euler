@@ -16,4 +16,7 @@ module MathUtilities
     string_of_digits.scan(/./).map { |char| char.to_i }
   end
 
+  def create_2d_array(text)
+
+  end
 end

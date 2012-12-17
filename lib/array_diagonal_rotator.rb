@@ -6,4 +6,9 @@ class ArrayDiagonalRotator
     num_output_inner_arrays = height + width - 1
     Array.new(num_output_inner_arrays)
   end
+
+  def rotate(input_array)
+    a = input_array
+    [a.last.first]
+  end
 end
