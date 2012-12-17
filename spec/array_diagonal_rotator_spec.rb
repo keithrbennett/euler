@@ -1,10 +1,10 @@
 require "rspec"
-require "array_diagonal_rotator"
+require "array_rotator"
 
 
-describe ArrayDiagonalRotator do
+describe ArrayRotator do
 
-  subject { ArrayDiagonalRotator.new([[0, 1], [2, 3]]) }
+  subject { ArrayRotator.new([[0, 1], [2, 3]]) }
 
   # The number of arrays required will be (height + width - 1) of original array.
   it "should create an array of x + y - 1 arrays" do
@@ -12,6 +12,46 @@ describe ArrayDiagonalRotator do
     output_array = subject.send(:create_output_array)
     output_array.length.should == 3
   end
+
+  it "should generate the same array when rotated 180 twice" do
+    a = [[1,2,3], [4,5,6], [7,8,9]]
+    rotator = ArrayRotator.new(a)
+    2.times { rotator.rotate_180 }
+    rotator.data_array.should == a
+  end
+
+  it "should generate the same array when rotated 90 4x" do
+    a = [[1,2,3], [4,5,6], [7,8,9]]
+    rotator = ArrayRotator.new(a)
+    4.times { rotator.rotate_90_right }
+    rotator.data_array.should == a
+  end
+
+  it "should rotate 180 correctly" do
+    original = [[1,2,3], [4,5,6], [7,8,9]]
+    expected = [[9,8,7], [6,5,4], [3,2,1]]
+    rotator = ArrayRotator.new(original)
+    rotator.rotate_180
+    rotator.data_array.should == expected
+  end
+
+  it "should rotate right 90 correctly" do
+    original = [[1,2,3], [4,5,6]]
+    expected = [[3,6], [2,5], [1,4]]
+    rotator = ArrayRotator.new(original)
+    rotator.rotate_90_right
+    rotator.data_array.should == expected
+  end
+
+  it "should rotate left 90 correctly" do
+    original = [[1,2,3], [4,5,6]]
+    expected = [[4,1], [5,2], [6,3]]
+    rotator = ArrayRotator.new(original)
+    rotator.rotate_90_left
+    rotator.data_array.should == expected
+  end
+
+
 
   it "'s first array should be [1] " do
     pending
