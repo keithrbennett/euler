@@ -41,9 +41,7 @@ class ArrayRotator
   end
 
   def rotate_180
-    new_array = data_array.reverse
-    new_array.each { |inner_array| inner_array.reverse! }
-    @data_array = new_array
+    @data_array.reverse!.each { |inner_array| inner_array.reverse! }
   end
 
   def rotate_90_right
