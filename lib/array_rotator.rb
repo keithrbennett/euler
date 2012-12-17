@@ -21,11 +21,22 @@ class ArrayRotator
     @data_array[y][x]
   end
 
-  def upper_right_to_lower_left_as_array
+  def upper_right_to_lower_left_coords
     points = []
     @x_max.downto(0) { |x| points << [0, x] }
     1.upto(@y_max)   { |y| points << [y, 0]}
     points
+  end
+
+  def inner_line_coords(start_xy)
+    y, x = start_xy
+    coords = []
+    while y <= @y_max
+      coords << [y, x]
+      y += 1
+      x += 1
+    end
+    coords
   end
 
   # Input array must be a 2D array whose inner arrays
@@ -33,9 +44,9 @@ class ArrayRotator
   def rotate_45_left
     input_array = @data_array
     new_array = []  # output array
-    upper_right_to_lower_left_as_array.each do |start_yx|
+    upper_right_to_lower_left_coords.each do |start_yx|
       inner_array = []
-      inner_array = value_at(start_yx)
+      inner_array << value_at(start_yx)
         new_array
 
       #start y =
