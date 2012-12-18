@@ -4,12 +4,12 @@ require "array_rotator"
 
 describe ArrayRotator do
 
-  subject { ArrayRotator.new([[0, 1], [2, 3]]) }
+  subject { ArrayRotator.new([[0, 1, 2], [3, 4, 5]]) }
 
   # The number of arrays required will be (height + width - 1) of original array.
   it "should create an array of x + y - 1 arrays" do
     output_array = subject.send(:create_output_array)
-    output_array.length.should == 3
+    output_array.length.should == 4
   end
 
   it "should generate the same array when rotated 180 twice" do
