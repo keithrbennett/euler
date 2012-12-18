@@ -56,7 +56,7 @@ class ArrayRotator
 
   # Input array must be a 2D array whose inner arrays
   # sizes are all equal
-  def rotate_45_left
+  def rotate_45_left_new_array
     new_array = []  # output array
     upper_right_to_lower_left_coords.each do |start_yx|
       inner_array = []
@@ -65,7 +65,7 @@ class ArrayRotator
       end
       new_array << inner_array
     end
-    @data_array = new_array
+    new_array
   end
 
   def rotate_180
@@ -80,4 +80,7 @@ class ArrayRotator
     @data_array = @data_array.reverse.transpose
   end
 
+  def ==(other)
+    data_array == other.data_array
+  end
 end

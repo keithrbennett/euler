@@ -8,7 +8,6 @@ describe ArrayRotator do
 
   # The number of arrays required will be (height + width - 1) of original array.
   it "should create an array of x + y - 1 arrays" do
-    input_array = Array.new(4) { Array.new(3) }
     output_array = subject.send(:create_output_array)
     output_array.length.should == 3
   end
@@ -51,6 +50,19 @@ describe ArrayRotator do
     rotator.data_array.should == expected
   end
 
+  it "should return the same result for 1 180 as 2 90's" do
+    original = [[1,2,3], [4,5,6], [7,8,9]]
+    expected = [[9,8,7], [6,5,4], [3,2,1]]
+    rotator_90_right  = ArrayRotator.new(original)
+    rotator_90_left  = ArrayRotator.new(original)
+    rotator_180 = ArrayRotator.new(original)
+    2.times { rotator_90_right.rotate_90_right }
+    2.times { rotator_90_left.rotate_90_left }
+    1.times { rotator_180.rotate_180 }
+    rotator_90_left.should == rotator_180 \
+    &&
+    rotator_90_right.should == rotator_180
+    end
   it "should calculate upper_right_to_lower_left_as_array correctly" do
     a = [[1,2,3], [4,5,6]]
     rotator = ArrayRotator.new(a)
