@@ -73,24 +73,15 @@ describe ArrayRotator do
   it "should calculate inner line coordinates correctly for rotate_45_left" do
     a = [[1,2,3], [4,5,6]]
     rotator = ArrayRotator.new(a)
-    start_xy = [0,1]
-    expected = [[0,1], [1,2]]
-    rotator.inner_line_coords(start_xy).should == expected
+    start_yx = [0,2]
+    expected = [[0,2]]
+    rotator.inner_line_coords(start_yx).should == expected
   end
 
-  it "'s first array should be [1] " do
-    pending
-    subject.rotate_45_left.first.should == [1]
+  it "should calculate a left rotate 45 correctly" do
+    expected = [[2], [1,5], [0,4], [3]]
+    subject.rotate_45_left_new_array.should == expected
   end
 
-  it "'s second array should be [0, 3]" do
-    pending
-    subject.rotate_45_left[1].should == [2, 1]
-  end
-
-  it "'s third array should be [1]" do
-    pending
-    subject.rotate_45_left[2].should == [3]
-  end
 
 end

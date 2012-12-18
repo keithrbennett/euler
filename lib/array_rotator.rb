@@ -46,7 +46,7 @@ class ArrayRotator
   def inner_line_coords(start_xy)
     y, x = start_xy
     coords = []
-    while y <= y_max
+    while y <= y_max && x <= x_max
       coords << [y, x]
       y += 1
       x += 1
@@ -60,8 +60,8 @@ class ArrayRotator
     new_array = []  # output array
     upper_right_to_lower_left_coords.each do |start_yx|
       inner_array = []
-      inner_line_coords.each do |yx|
-        inner_array << value_at(start_yx)
+      inner_line_coords(start_yx).each do |yx|
+        inner_array << value_at(yx)
       end
       new_array << inner_array
     end
