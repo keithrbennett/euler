@@ -2,6 +2,38 @@ class ArrayRotator
 
   attr_reader :data_array, :num_output_inner_arrays
 
+  # data_2d_array must be a 2D array whose inner arrays
+  # sizes are all equal.  Degrees should be one of
+  # [0, 45, 90, 135, 180, 225, 270, 315].
+  def self.rotate(data_2d_array, degrees)
+    rotator = ArrayRotator.new(data_2d_array)
+    case degrees
+      when 0
+        data_2d_array
+      when 45
+        rotator.rotate_45
+      when 90
+        rotator.rotate_90
+      when 135
+        a = rotator.rotate_90
+        ArrayRotator.new(a).rotate_45
+      when 180
+        rotator.rotate_180
+      when 225
+        a = rotator.rotate_90
+        ArrayRotator.new(a).rotate_45
+      when 270
+        a = rotator.rotate_180
+        ArrayRotator.new(a).rotate_90
+      when 315
+        a = rotator.rotate_90
+        ArrayRotator.new(a).rotate_45
+      else
+        legal_values = [0, 45, 90, 135, 180, 225, 270, 315]
+        raise "Value of #{degrees} is not legal.  Legal values are #{legal_values.join(', ')}"
+    end
+  end
+
   def initialize(data_2d_array)
     @data_array = data_2d_array
   end
@@ -54,9 +86,19 @@ class ArrayRotator
     coords
   end
 
-  # Input array must be a 2D array whose inner arrays
-  # sizes are all equal
-  def rotate_45_left_new_array
+  def rotate_180
+    @data_array.reverse.each { |inner_array| inner_array.reverse! }
+  end
+
+  def rotate_90
+    @data_array.reverse.transpose
+  end
+
+  def rotate_270
+    @data_array.transpose.reverse
+  end
+
+  def rotate_45
     new_array = []  # output array
     upper_right_to_lower_left_coords.each do |start_yx|
       inner_array = []
@@ -66,18 +108,6 @@ class ArrayRotator
       new_array << inner_array
     end
     new_array
-  end
-
-  def rotate_180
-    @data_array.reverse!.each { |inner_array| inner_array.reverse! }
-  end
-
-  def rotate_90_right
-    @data_array = @data_array.transpose.reverse
-  end
-
-  def rotate_90_left
-    @data_array = @data_array.reverse.transpose
   end
 
   def ==(other)
