@@ -34,4 +34,11 @@ describe Euler do
     subject.euler13.should == '5537376230'
   end
 
+  #it "should exercise problem 11" do
+  #  -> { subject.euler11 }.should_not raise_error
+  #  a = subject.euler11
+  #  a[0][0].should == 8
+  #  a[4][4].should == 51
+  #end
+
 end

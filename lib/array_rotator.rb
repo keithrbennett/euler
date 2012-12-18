@@ -34,6 +34,22 @@ class ArrayRotator
     end
   end
 
+  def horizontal_vertical_and_diagonal_line_segments(array_2d, line_size)
+    result = []
+    [
+        array_2d,
+        ArrayRotator.rotate(array_2d, 45),
+        ArrayRotator.rotate(array_2d, 90),
+        ArrayRotator.rotate(array_2d, 135)
+    ].each do |array|
+      array.each do |inner_array|
+        result << inner_array.each_cons(line_size).to_a
+      end
+    end
+    result
+  end
+
+
   def initialize(data_2d_array)
     @data_array = data_2d_array
   end
