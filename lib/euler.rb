@@ -220,22 +220,22 @@ class Euler
   def euler19
     # Jan. 1, 1901 was a Tuesday, since 1/1/1900 was a Monday,
     # and 1900 had 365 days; 365 % 7 == 1.  Therefore, relative
-    # from 0 = 1/1/1901, day number % 6 would be a Monday.
-    sum = 0 # sum of Mondays falling on 1st of month for this range
+    # from 0 = 1/1/1901, day number % 7 == 5 would be a Sunday.
+    sum = 0 # sum of Sundays falling on 1st of month for this range
     day_count = 0 # number of days since start of range
-    monday_position_in_week = 6
+    sunday_position_in_week = 5
     (1901..2000).each do |year|
       (1..12).each do |month|
+        is_sunday = (day_count % 7 == sunday_position_in_week)
         days_this_month = days_in_month(year, month)
         day_count += days_this_month
-        is_monday = day_count % monday_position_in_week == 0
-        if is_monday
+        if is_sunday
           sum += 1
-          puts "1st day of #{month}/#{year} was a Monday."
+          #puts "1st day of #{month}/#{year} was a Sunday."
         end
       end
     end
-    puts "Sum of Mondays in period is #{sum}."
+    #puts "Sum of Sundays in period is #{sum}."
     sum
   end
 
@@ -251,5 +251,11 @@ class Euler
   end
 
 
-
+  def euler31
+    #denominations = [1, 2, 5, 10, 20, 50, 100, 200]
+    #maxes = denominations.map { |denom| 200 / denom }
+    denominations = [1, 2]
+    maxes = denominations.map { |denom| 6 / denom }
+    combination_count = ma
+  end
 end
