@@ -35,15 +35,15 @@ describe Euler do
   end
 
   it "should exercise problem 11" do
-    ->{subject.euler11 }.should_not raise_error
+    subject.euler11.should == 70_600_674
   end
 
   it "should exercise problem 19" do
-    ->{subject.euler19 }.should_not raise_error
+    subject.euler19.should == 171
   end
 
   it "should exercise problem 20" do
-    ->{subject.euler20 }.should_not raise_error
+    subject.euler20.should == 648
   end
 
 end

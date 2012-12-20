@@ -7,24 +7,36 @@ class Euler
   include MathUtilities
   include Calendar
 
-  def euler1
-    qualified = ->(n) { n % 3 == 0 || n % 5 == 0 }
-    (0...1000).inject { |sum, n| sum += n if qualified.(n); sum }
+  def show_answer(problem_number, answer)
+    puts "\nThe answer to problem ##{problem_number} is #{answer}."
   end
 
+  def euler1
+    qualified = ->(n) { n % 3 == 0 || n % 5 == 0 }
+    answer = (0...1000).inject { |sum, n| sum += n if qualified.(n); sum }
+    show_answer(1, answer)
+    answer # 233_168
+  end
+
+
   def euler2
-    fibonacci_sequence(4_000_000).inject do |sum, n|
+    answer = fibonacci_sequence(4_000_000).inject do |sum, n|
       (sum += n) if n.even?
       sum
     end
+    show_answer(2, answer)
+    answer  # 4_613_732
   end
 
 
   def euler3
     factors = prime_factors(600_851_475_143)
     File.write('factors.txt', factors.join("\n")) # for inspection
-    factors.last
+    answer = factors.last
+    show_answer(3, answer)
+    answer
   end
+
 
   def euler8
     number_as_string = %w(
@@ -64,8 +76,8 @@ class Euler
         product_max = product
       end
     end
-
-    product_max
+    show_answer(8, product_max)
+    product_max # 40_824
   end
 
   def euler11
@@ -105,7 +117,9 @@ class Euler
         max_quad = quad
       end
     end
+    show_answer(11, max)
     puts "Maximum product is #{max}, from array #{max_quad}."  # 70600674, [87, 97, 94, 89]
+    max # 70_600_674
   end
 
 
@@ -213,7 +227,9 @@ class Euler
       53503534226472524250874054075591789781264330331690
     ).map { |s| s.to_i }
     sum = addends.inject(:+)
-    sum.to_s[0...10]
+    answer = sum.to_s[0...10]
+    show_answer(13, answer)
+    answer # 5537376230
   end
 
 
@@ -235,7 +251,7 @@ class Euler
         end
       end
     end
-    #puts "Sum of Sundays in period is #{sum}."
+    show_answer(19, sum)
     sum
   end
 
@@ -246,7 +262,7 @@ class Euler
      #  93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000
     digits = digit_array_from_string(factorial100.to_s)
     sum = digits.inject(:+)
-    puts "The sum of the digits in the factorial of 100 is #{sum}."
+    show_answer(20, sum)
     sum  # 648
   end
 
@@ -254,8 +270,8 @@ class Euler
   def euler31
     #denominations = [1, 2, 5, 10, 20, 50, 100, 200]
     #maxes = denominations.map { |denom| 200 / denom }
-    denominations = [1, 2]
-    maxes = denominations.map { |denom| 6 / denom }
-    combination_count = ma
+    #denominations = [1, 2]
+    #maxes = denominations.map { |denom| 6 / denom }
+    #combination_count = ma
   end
 end
