@@ -69,4 +69,31 @@ describe ArrayRotator do
     ArrayRotator.rotate(original, 45).should == expected
   end
 
+  it "should calculate line segments of 1 orientation of a 2d array correctly" do
+    a = [[0,1,2], [3,4,5], [6,7,8]]
+    expected = [[0, 1], [1, 2], [3, 4], [4, 5], [6, 7], [7, 8]]
+    actual = ArrayRotator.line_segments_from_array_2d(a, 2)
+    actual.should == expected
+  end
+
+  it "should calculate line segments of 1 orientation of a 2d array correctly" do
+    a = [[0,1,2], [3,4,5], [6,7,8]]
+    expected = [[0, 1], [1, 2], [3, 4], [4, 5], [6, 7], [7, 8]]
+    actual = ArrayRotator.line_segments_from_array_2d(a, 2)
+    actual.should == expected
+  end
+
+  it "should calculate line segments of a 2d array correctly" do
+    a = [[0,1,2], [3,4,5], [6,7,8]]
+    expected = [[0,3], [3,6], [1,4], [4,7], [2,5], [5,8],
+        [0,1], [1,2], [3,4], [4,5], [6,7], [7,8],
+        [3,7], [0,4], [4,8], [1,5],
+        [1,3], [2,4], [4,6], [5,7]
+    ].sort
+    actual = ArrayRotator.horizontal_vertical_and_diagonal_line_segments(a, 2)
+    # For comparison, sort all arrays, do from innermost level out:
+    actual.each { |a1| a1.sort! }
+    actual.sort!
+    actual.should == expected.sort
+  end
 end

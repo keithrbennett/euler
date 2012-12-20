@@ -15,7 +15,7 @@ class ArrayRotator
       when 90
         rotator.rotate_90
       when 135
-        a = rotator.rotate_90
+        a = rotator.rotate_180
         ArrayRotator.new(a).rotate_45
       when 180
         rotator.rotate_180
@@ -34,21 +34,24 @@ class ArrayRotator
     end
   end
 
-  def horizontal_vertical_and_diagonal_line_segments(array_2d, line_size)
+  def self.horizontal_vertical_and_diagonal_line_segments(array_2d, line_size)
     result = []
     [
         array_2d,
         ArrayRotator.rotate(array_2d, 45),
-        ArrayRotator.rotate(array_2d, 90),
+        ArrayRotator.rotate(array_2d, 270),
         ArrayRotator.rotate(array_2d, 135)
     ].each do |array|
-      array.each do |inner_array|
-        result << inner_array.each_cons(line_size).to_a
-      end
+      result += line_segments_from_array_2d(array, line_size)
     end
-    result
+    result.sort
   end
 
+  def self.line_segments_from_array_2d(array_2d, line_size)
+    array_2d.inject([]) do |result_array, inner_array|
+      result_array += inner_array.each_cons(line_size).to_a
+    end
+  end
 
   def initialize(data_2d_array)
     @data_array = data_2d_array
@@ -91,8 +94,8 @@ class ArrayRotator
     points
   end
 
-  def inner_line_coords(start_xy)
-    y, x = start_xy
+  def inner_line_coords(start_yx)
+    y, x = start_yx
     coords = []
     while y <= y_max && x <= x_max
       coords << [y, x]
