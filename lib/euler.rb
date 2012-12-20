@@ -236,5 +236,20 @@ class Euler
       end
     end
     puts "Sum of Mondays in period is #{sum}."
+    sum
   end
+
+
+  def euler20
+    # Find the sum of the digits in the number 100!
+    factorial100 = (1..100).inject(:*)
+     #  93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000
+    digits = digit_array_from_string(factorial100.to_s)
+    sum = digits.inject(:+)
+    puts "The sum of the digits in the factorial of 100 is #{sum}."
+    sum  # 648
+  end
+
+
+
 end

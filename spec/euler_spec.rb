@@ -42,4 +42,8 @@ describe Euler do
     ->{subject.euler19 }.should_not raise_error
   end
 
+  it "should exercise problem 20" do
+    ->{subject.euler20 }.should_not raise_error
+  end
+
 end
