@@ -15,7 +15,7 @@ describe Euler do
   end
 
   it "should calculate euler2 correctly" do
-    subject.euler2.should == 4613732
+    subject.euler2.should == 4_613_732
   end
 
   it "should calculate euler3 correctly" do
@@ -27,7 +27,7 @@ describe Euler do
 
   it "should calculate euler8 correctly" do
     # Found max: num = 40824, offset = 364, digits = [9, 9, 8, 7, 9]
-    subject.euler8.should == 40824
+    subject.euler8.should == 40_824
   end
 
   it "should calculate euler13 correctly" do
