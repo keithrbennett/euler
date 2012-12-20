@@ -66,12 +66,8 @@ class Euler
 
     product_max = 0
 
-    (0...(digits.size - 5)).each do |offset|
-      product = digits[offset] *
-          digits[offset + 1] *
-          digits[offset + 2] *
-          digits[offset + 3] *
-          digits[offset + 4]
+    digits.each_cons(5).each do |quintuple|
+      product = quintuple.inject(:*)
       if product > product_max
         product_max = product
       end
