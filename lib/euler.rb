@@ -1,9 +1,11 @@
 require 'pry'
 require 'math_utilities'
+require 'calendar'
 
 class Euler
 
   include MathUtilities
+  include Calendar
 
   def euler1
     qualified = ->(n) { n % 3 == 0 || n % 5 == 0 }
@@ -67,7 +69,7 @@ class Euler
   end
 
   def euler11
-    data_lines = \
+    data = \
     "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
     49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
     81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
@@ -92,7 +94,18 @@ class Euler
       line.split(' ').map { |s| s.to_i }
     end
 
-    data_lines
+    quads = ArrayRotator.horizontal_vertical_and_diagonal_line_segments(data, 4)
+    #puts "Analyzing #{quads.size} quadruplets..."
+    max = 0
+    max_quad = nil
+    quads.each do |quad|
+      n = quad.inject(:*)  # multiply the 4 numbers
+      if n > max
+        max = n
+        max_quad = quad
+      end
+    end
+    puts "Maximum product is #{max}, from array #{max_quad}."  # 70600674, [87, 97, 94, 89]
   end
 
 
@@ -201,5 +214,27 @@ class Euler
     ).map { |s| s.to_i }
     sum = addends.inject(:+)
     sum.to_s[0...10]
+  end
+
+
+  def euler19
+    # Jan. 1, 1901 was a Tuesday, since 1/1/1900 was a Monday,
+    # and 1900 had 365 days; 365 % 7 == 1.  Therefore, relative
+    # from 0 = 1/1/1901, day number % 6 would be a Monday.
+    sum = 0 # sum of Mondays falling on 1st of month for this range
+    day_count = 0 # number of days since start of range
+    monday_position_in_week = 6
+    (1901..2000).each do |year|
+      (1..12).each do |month|
+        days_this_month = days_in_month(year, month)
+        day_count += days_this_month
+        is_monday = day_count % monday_position_in_week == 0
+        if is_monday
+          sum += 1
+          puts "1st day of #{month}/#{year} was a Monday."
+        end
+      end
+    end
+    puts "Sum of Mondays in period is #{sum}."
   end
 end
